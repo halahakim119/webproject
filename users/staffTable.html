@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Staff Table</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="staff.js"></script>
+    <style>
+        .navbar-inverse {
+            background-color: transparent;
+            border-color: transparent;
+        }
+
+        body {
+            background-image: url("https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2NpZW5jZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+        }
+
+        .divider-line {
+            border: none;
+            border-top: 3px solid transparent;
+        }
+
+        #pagination {
+            text-align: center;
+        }
+
+        #pagination .pagination {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">LABORATORY</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="index.php">Home</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Patients<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="patients.html">View Patients</a></li>
+                        <li><a href="new_patient_form.html">Add New Patient</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Users<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="view_users.html">View Users</a></li>
+                        <li><a href="add_user.html">Add New User</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Tests<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="view_tests.html">View Tests</a></li>
+                        <li><a href="add_test.html">Add New Test</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search Staff">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="searchBtn">Search</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <hr class="divider-line">
+        <table class="table" id="staffTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Department</th>
+                    <th>Contact Number</th>
+                    <th>Username</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+        <div id="pagination">
+            <ul class="pagination">
+                <li id="prev-page">
+                    <a href="#" aria-label="Previous" onclick="prevPage()">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><span id="page-info"></span></li>
+                <li id="next-page">
+                    <a href="#" aria-label="Next" onclick="nextPage()">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+
+</body>
+
+</html>

@@ -1,23 +1,20 @@
 <?php
-
-require_once "db/db2.php";
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+require_once "../db/db2.php";
 
 try {
     $db = new Db2();
     $dbConnection = $db->connect();
 
-    $query = "SELECT * FROM `patient` ORDER BY `patient_id` DESC";
+    $query = "SELECT * FROM `staff`";
 
     $stmt = $dbConnection->prepare($query);
     $stmt->execute();
 
-    $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $dbConnection = null;
 
-    echo json_encode($row);
+    echo json_encode($rows);
 } catch (PDOException $e) {
     $data = array(
         "status" => "failed",

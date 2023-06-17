@@ -1,5 +1,4 @@
 <?php
-
 require_once "db/db2.php";
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -8,7 +7,7 @@ try {
     $db = new Db2();
     $dbConnection = $db->connect();
 
-    $query = "SELECT * FROM `patient` ORDER BY `patient_id` DESC";
+    $query = "SELECT * FROM `test_types` ORDER BY `test_id`";
 
     $stmt = $dbConnection->prepare($query);
     $stmt->execute();

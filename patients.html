@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <title>Patient Table</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <style>
     .navbar-inverse {
       background-color: transparent;
@@ -24,20 +21,25 @@
 
     .container {
       background-color: rgba(255, 255, 255, 0.9);
-
       padding: 20px;
     }
+
     .divider-line {
       border: none;
       border-top: 3px solid transparent;
     }
-  </style>
 
+    #pagination {
+      text-align: center;
+    }
+
+    #pagination .pagination {
+      display: inline-block;
+    }
+  </style>
 </head>
 
 <body>
-
-
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -46,21 +48,21 @@
       <ul class="nav navbar-nav">
         <li><a href="index.php">Home</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patients<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown">Patients<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="patients.html">View Patients</a></li>
             <li><a href="new_patient_form.html">Add New Patient</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown">Users<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="view_users.html">View Users</a></li>
             <li><a href="add_user.html">Add New User</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tests<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown">Tests<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="view_tests.html">View Tests</a></li>
             <li><a href="add_test.html">Add New Test</a></li>
@@ -70,23 +72,20 @@
 
     </div>
   </nav>
-  
 
 
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-8">
-          <div class="input-group">
-              <input type="text" class="form-control" id="searchTerm" placeholder="Search by name or contact">
-              <span class="input-group-btn">
-                  <button class="btn btn-default" type="button" onclick="searchPatients()">Search</button>
-              </span>
-          </div>
+        <div class="input-group">
+          <input type="text" class="form-control" id="searchTerm" placeholder="Search by name or contact">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" onclick="searchPatients()">Search</button>
+          </span>
+        </div>
       </div>
-  </div>
-  
-  <hr class="divider-line">
-
+    </div>
+    <hr class="divider-line">
     <table class="table">
       <thead>
         <tr>
@@ -95,18 +94,58 @@
           <th scope="col">Age</th>
           <th scope="col">Gender</th>
           <th scope="col">Address</th>
+          <th scope="col">Date of test</th>
           <th scope="col">Contact Number</th>
+          <th scope="col">Test name</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
-      <tbody id="tbody">
-
-      </tbody>
-
+      <tbody id="tbody"></tbody>
     </table>
+    <div id="pagination">
+      <ul class="pagination">
+        <li id="prev-page" class="disabled"><a href="#" onclick="prevPage()">&laquo;</a></li>
+        <li><span id="page-info"></span></li>
+        <li id="next-page" class="disabled"><a href="#" onclick="nextPage()">&raquo;</a></li>
+      </ul>
 
-    <script src="patient.js"></script>
+    </div>
+  </div>
 
+
+  <!-- Add Result Modal -->
+  <div id="add-result-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Result</h4>
+        </div>
+        <div class="modal-body">
+          <form id="add-result-form">
+            <div class="form-group">
+              <label for="patient-name">Patient Name:</label>
+              <select class="form-control" id="patient-name" disabled></select>
+            </div>
+            <div class="form-group">
+              <label for="test-name">Test Name:</label>
+              <select class="form-control" id="test-name" disabled></select>
+            </div>
+            <div class="form-group">
+              <label for="result-value">Result Value:</label>
+              <input type="text" class="form-control" id="result-value">
+              <input type="hidden" class="form-control" id="patient-id">
+            </div>
+            <button type="button" class="btn btn-primary" id="add-result-button">Add Result</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="patient.js"></script>
 </body>
 
 </html>

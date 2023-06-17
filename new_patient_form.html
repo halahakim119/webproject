@@ -11,6 +11,30 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="patient.js"></script>
 
+
+  <script>
+    // Fetch test names
+    $.ajax({
+      url: 'fetchTestNames.php',
+      type: 'GET',
+      success: function (response) {
+        var testNames = JSON.parse(response);
+        var testSelect = $('#test-name');
+        testSelect.empty();
+
+        $.each(testNames, function () {
+          testSelect.append($('<option></option>').attr('value', this.test_name).text(this.test_name));
+        });
+
+        // Show the modal
+        $('#add-result-modal').modal('show');
+      },
+      error: function (error) {
+        console.log(error);
+      }
+    });
+  </script>
+
   <style>
     .navbar-inverse {
       background-color: transparent;
@@ -44,7 +68,7 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="view_users.html">View Users</a></li>
+            <li><a href="users/staffTable.html">View Users</a></li>
             <li><a href="add_user.html">Add New User</a></li>
           </ul>
         </li>
@@ -60,7 +84,7 @@
     </div>
   </nav>
 
-  <form method="post" id="addDataForm" >
+  <form method="post" id="addDataForm">
     <div class="form-group">
       <label for="patientName">Name:</label>
       <input type="text" class="form-control" id="patientName" name="patientName" placeholder="Enter patient name"
@@ -84,6 +108,11 @@
       <input type="text" class="form-control" id="patientAddress" name="patientAddress"
         placeholder="Enter patient address" required>
     </div>
+    <div class="form-group">
+      <label for="test-name">Test Name:</label>
+      <select class="form-control" id="test-name" name="test-name"></select>
+    </div>
+
     <div class="form-group">
       <label for="patientContact">Contact Number:</label>
       <input type="text" class="form-control" id="patientContact" name="patientContact"

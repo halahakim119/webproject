@@ -1,29 +1,28 @@
 <?php
+require_once "../db/db2.php";
 
-require_once "db/db2.php";
-
-$searchTerm = $_GET["searchTerm"];
+$search = $_GET["search"];
 
 try {
-    $query = "SELECT * FROM `patient` WHERE `name` LIKE '%$searchTerm%' OR `contact_number` LIKE '%$searchTerm%'  ORDER BY `patient_id` DESC";
-
     $db = new Db2();
     $db = $db->connect();
 
+    $query = "SELECT * FROM `staff` WHERE `name` LIKE :search";
+
     $stmt = $db->prepare($query);
+    $stmt->bindValue(':search', '%' . $search . '%');
     $stmt->execute();
 
-    $db = null;
-
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $db = null;
 
     echo json_encode($rows);
 } catch (PDOException $e) {
     $data = array(
-        "status" => "failed"
+        "status" => "failed",
+        "error" => $e->getMessage()
     );
-
     echo json_encode($data);
 }
-
 ?>

@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <title>Update Patient Data</title>
+    <title>Update Staff Data</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="patient.js"></script>
+    <script src="staff.js"></script>
 
     <style>
         .navbar-inverse {
@@ -60,54 +60,48 @@
     </nav>
     <form method="post" id="updateDataForm">
         <div class="form-group">
-            <label for="update-patientName">Name:</label>
-            <input type="text" class="form-control" id="update-patientName" name="name" placeholder="Enter patient name"
+            <label for="update-staffName">Name:</label>
+            <input type="text" class="form-control" id="update-staffName" name="name" placeholder="Enter staff name"
                 required>
         </div>
         <div class="form-group">
-            <label for="update-patientAge">Age:</label>
-            <input type="number" class="form-control" id="update-patientAge" name="age" placeholder="Enter patient age"
-                required>
+            <label for="update-staffDesignation">Designation:</label>
+            <input type="text" class="form-control" id="update-staffDesignation" name="designation"
+                placeholder="Enter staff designation" required>
         </div>
         <div class="form-group">
-            <label for="update-patientGender">Gender:</label>
-            <select class="form-control" id="update-patientGender" name="gender" required>
-                <option value="">Select gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
+            <label for="update-staffDepartment">Department:</label>
+            <input type="text" class="form-control" id="update-staffDepartment" name="department"
+                placeholder="Enter staff department" required>
         </div>
         <div class="form-group">
-            <label for="update-patientAddress">Address:</label>
-            <input type="text" class="form-control" id="update-patientAddress" name="address"
-                placeholder="Enter patient address" required>
+            <label for="update-staffContact">Contact Number:</label>
+            <input type="text" class="form-control" id="update-staffContact" name="contact_number"
+                placeholder="Enter staff contact number" required>
         </div>
         <div class="form-group">
-            <label for="update-testName">Test Name:</label>
-            <input type="text" class="form-control" id="update-testName" name="test_name" placeholder="Enter Test name"
-                required>
+            <label for="update-staffUsername">Username:</label>
+            <input type="text" class="form-control" id="update-staffUsername" name="username"
+                placeholder="Enter staff username" required>
         </div>
-
-
         <div class="form-group">
-            <label for="update-patientContact">Contact Number:</label>
-
-            <input type="text" class="form-control" id="update-patientContact" name="contact_number"
-                placeholder="Enter patient contact number" required>
+            <label for="update-staffPassword">Password:</label>
+            <input type="text" class="form-control" id="update-staffPassword" name="password"
+                placeholder="Enter staff password" required>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 
 
-    <script src="patient.js"></script>
+    <script src="staff.js"></script>
 
     <script>
-        // Get the patient ID from the URL query parameter
-        var patientId = getQueryVariable("patient_id");
+        // Get the staff ID from the URL query parameter
+        var staffId = getQueryVariable("staff_id");
 
 
-        // Fetch patient data and populate the form
-        passData(patientId);
+        // Fetch staff data and populate the form
+        passData(staffId);
 
         // Function to extract query variables from URL
         function getQueryVariable(variable) {

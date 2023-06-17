@@ -5,14 +5,20 @@ require_once "db/db2.php";
 $id = $_GET["id"];
 
 try {
-    $query = "DELETE FROM `patient` WHERE `patient_id` = :id";
-
     $db = new Db2();
     $db = $db->connect();
 
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
+    // Delete the results associated with the patient
+    $queryDeleteResults = "DELETE FROM `result` WHERE `patient_id` = :id";
+    $stmtDeleteResults = $db->prepare($queryDeleteResults);
+    $stmtDeleteResults->bindParam(':id', $id);
+    $stmtDeleteResults->execute();
+
+    // Delete the patient
+    $queryDeletePatient = "DELETE FROM `patient` WHERE `patient_id` = :id";
+    $stmtDeletePatient = $db->prepare($queryDeletePatient);
+    $stmtDeletePatient->bindParam(':id', $id);
+    $stmtDeletePatient->execute();
 
     $db = null;
 

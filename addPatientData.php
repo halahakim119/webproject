@@ -5,11 +5,11 @@ $name = $_POST["patientName"];
 $age = $_POST["patientAge"];
 $gender = $_POST["patientGender"];
 $address = $_POST["patientAddress"];
+$test_name = $_POST["test-name"];
 $contact_number = $_POST["patientContact"];
 
-try
-{
-    $query = "INSERT INTO `patient` (`name`,`age`,`gender`,`address`,`contact_number`) VALUES (:name,:age,:gender,:address,:contact_number)";
+try {
+    $query = "INSERT INTO `patient` (`name`,`age`,`gender`,`address`,`contact_number`,`test_name`) VALUES (:name,:age,:gender,:address,:contact_number,:test_name)";
 
     $db = new Db2();
     $db = $db->connect();
@@ -20,6 +20,7 @@ try
     $stmt->bindParam(':gender', $gender);
     $stmt->bindParam(':address', $address);
     $stmt->bindParam(':contact_number', $contact_number);
+    $stmt->bindParam(':test_name', $test_name);
     $stmt->execute();
     $db = null;
 
@@ -28,9 +29,7 @@ try
     );
 
     echo json_encode($data);
-}
-catch(PDOException $e)
-{
+} catch (PDOException $e) {
     $data = array(
         "status" => "failed"
     );
