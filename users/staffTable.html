@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -121,6 +121,260 @@
         </div>
     </div>
     
+
+</body>
+
+</html> -->
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Staff Management</title>
+</head>
+
+<body>
+    <br><br>
+    <h2 class="text-center">Staff Management</h2>
+    <br><br>
+
+    <div class="container">
+        <!-- add data modal starts -->
+        <button type="button" class="btn d-block mx-auto btn-primary" data-toggle="modal" data-target="#addDataModal">
+            Add New Staff
+        </button>
+        <div class="modal fade" id="addDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add New Staff</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="post" id="addDataForm" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input name="name" type="text" class="form-control" id="name" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="designation">Designation</label>
+                                <input name="designation" type="text" class="form-control" id="designation" placeholder="Designation">
+                            </div>
+                            <div class="form-group">
+                                <label for="department">Department</label>
+                                <input name="department" type="text" class="form-control" id="department" placeholder="Department">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact_number">Contact Number</label>
+                                <input name="contact_number" type="text" class="form-control" id="contact_number" placeholder="Contact Number">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input name="username" type="text" class="form-control" id="username" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input name="password" type="password" class="form-control" id="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="addDataBtn btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- update data modal -->
+        <div class="modal fade" id="updateDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Update Staff</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="post" id="updateDataForm">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="update-name">Name</label>
+                                <input name="name" type="text" class="form-control" id="update-name" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="update-designation">Designation</label>
+                                <input name="designation" type="text" class="form-control" id="update-designation" placeholder="Designation">
+                            </div>
+                            <div class="form-group">
+                                <label for="update-department">Department</label>
+                                <input name="department" type="text" class="form-control" id="update-department" placeholder="Department">
+                            </div>
+                            <div class="form-group">
+                                <label for="update-contact_number">Contact Number</label>
+                                <input name="contact_number" type="text" class="form-control" id="update-contact_number" placeholder="Contact Number">
+                            </div>
+                            <div class="form-group">
+                                <label for="update-username">Username</label>
+                                <input name="username" type="text" class="form-control" id="update-username" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <label for="update-password">Password</label>
+                                <input name="password" type="password" class="form-control" id="update-password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="updateDataBtn btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br><br><br>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <br><br>
+            <div class="col-lg-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Designation</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Contact Number</th>
+                            <th scope="col">Username</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KyW6MYoblRogYD1+ctui4F4bRys6+L/J6zCk9u90hG8oX1+W0f8k11y4Bp2+SPKP"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        // Fetch staff data from the database and display in the table
+        function fetchData() {
+            $.ajax({
+                url: 'fetch_staff.php',
+                type: 'POST',
+                success: function (response) {
+                    $('#tbody').html(response);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            fetchData(); // Fetch data when the page loads
+
+            // Add new staff data
+            $('#addDataForm').submit(function (event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: 'add_staff.php',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        fetchData(); // Fetch data again to update the table
+                        $('#addDataModal').modal('hide');
+                        $('#addDataForm')[0].reset();
+                    }
+                });
+            });
+
+            // Delete staff data
+            $(document).on('click', '.deleteDataBtn', function () {
+                if (confirm("Are you sure you want to delete this staff record?")) {
+                    var staffId = $(this).data('id');
+                    $.ajax({
+                        url: 'delete_staff.php',
+                        type: 'POST',
+                        data: {
+                            id: staffId
+                        },
+                        success: function (response) {
+                            fetchData(); // Fetch data again to update the table
+                        }
+                    });
+                }
+            });
+
+            // Fetch staff data and fill in the update data modal
+            $(document).on('click', '.editDataBtn', function () {
+                var staffId = $(this).data('id');
+                $.ajax({
+                    url: 'fetch_single_staff.php',
+                    type: 'POST',
+                    data: {
+                        id: staffId
+                    },
+                    success: function (response) {
+                        var data = JSON.parse(response);
+                        $('#update-name').val(data.name);
+                        $('#update-designation').val(data.designation);
+                        $('#update-department').val(data.department);
+                        $('#update-contact_number').val(data.contact_number);
+                        $('#update-username').val(data.username);
+                        $('#update-password').val(data.password);
+                        $('#updateDataModal').modal('show');
+                    }
+                });
+            });
+
+            // Update staff data
+            $('#updateDataForm').submit(function (event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: 'update_staff.php',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        fetchData(); // Fetch data again to update the table
+                        $('#updateDataModal').modal('hide');
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 

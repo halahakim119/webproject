@@ -2,10 +2,8 @@
 
 require_once "../db/db2.php";
 
-$id = $_GET["id"];
-
 try {
-    $query = "DELETE FROM `staff` WHERE staff_id='$id'";
+    $query = "SELECT * FROM `staff`";
 
     $db = new Db2();
     $db = $db->connect();
@@ -13,12 +11,11 @@ try {
     $stmt = $db->prepare($query);
     $stmt->execute();
 
+    $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     $db = null;
 
-    $data = array(
-        "status" => "removed"
-    );
-    echo json_encode($data);
+    echo json_encode($row);
 } catch(PDOException $e) {
     $data = array(
         "status" => "failed"

@@ -9,19 +9,13 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 
 try {
-    $query = "INSERT INTO `staff` (`name`, `designation`, `department`, `contact_number`, `username`, `password`) VALUES (:name, :designation, :department, :contact_number, :username, :password)";
+    $query = "INSERT INTO `staff` (`name`, `designation`, `department`, `contact_number`, `username`, `password`) VALUES (?,?,?,?,?,?)";
 
     $db = new Db2();
     $db = $db->connect();
 
     $stmt = $db->prepare($query);
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':designation', $designation);
-    $stmt->bindParam(':department', $department);
-    $stmt->bindParam(':contact_number', $contact_number);
-    $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':password', $password);
-    $stmt->execute();
+    $stmt->execute([$name, $designation, $department, $contact_number, $username, $password]);
 
     $db = null;
 
@@ -37,4 +31,5 @@ try {
 
     echo json_encode($data);
 }
+
 ?>
